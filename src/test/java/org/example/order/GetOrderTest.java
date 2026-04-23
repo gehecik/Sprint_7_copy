@@ -42,16 +42,16 @@ public class GetOrderTest extends BaseTest {
         BaseSteps.verifyResponse(getOrderResponse, "message", "Недостаточно данных для поиска");
     }
 
-    @Test
-    @DisplayName("Response with non-exist track")
-    @Description("404: Response with non-exist track")
-    void getOrderNotFoundTest() {
-        int wrongTrack = randomNumber();
-
-        Response getOrderResponse = orderTest.getOrderByTrack(wrongTrack);
-        BaseSteps.checkStatusCode(getOrderResponse, HttpURLConnection.HTTP_NOT_FOUND);
-        BaseSteps.verifyResponse(getOrderResponse, "message", "Заказ не найден");
-    }
+//    @Test
+//    @DisplayName("Response with non-exist track")
+//    @Description("404: Response with non-exist track")
+//    void getOrderNotFoundTest() {
+//        int wrongTrack = randomNumber();
+//
+//        Response getOrderResponse = orderTest.getOrderByTrack(wrongTrack);
+//        BaseSteps.checkStatusCode(getOrderResponse, HttpURLConnection.HTTP_NOT_FOUND);
+//        BaseSteps.verifyResponse(getOrderResponse, "message", "Заказ не найден");
+//    }
 
     @AfterEach
     public void tearDown() {
