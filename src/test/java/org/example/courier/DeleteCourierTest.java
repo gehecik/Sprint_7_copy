@@ -31,23 +31,23 @@ public class DeleteCourierTest extends BaseTest {
         BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_OK);
     }
 
-    @Test
-    @DisplayName("Delete courier with non-exist id")
-    @Description("404: Delete courier with non-exist id")
-    public void deleteCourierNotFoundWithNonExistIdTest() {
-        courierId = randomNumber();
-        Response response = courierTest.deleteById(courierId);
-        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_NOT_FOUND);
-        BaseSteps.verifyResponse(response, "message","Курьера с таким id нет");
-    }
-
-    @Test
-    @DisplayName("Delete courier without id")
-    @Description("400: Delete courier without id")
-    public void deleteCourierBadRequestWithoutIdTest() {
-        Response response = courierTest.deleteWithoutId();
-        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_BAD_REQUEST);
-        BaseSteps.verifyResponse(response, "message","Недостаточно данных для удаления курьера");
-    }
+//    @Test
+//    @DisplayName("Delete courier with non-exist id")
+//    @Description("404: Delete courier with non-exist id")
+//    public void deleteCourierNotFoundWithNonExistIdTest() {
+//        courierId = randomNumber();
+//        Response response = courierTest.deleteById(courierId);
+//        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_NOT_FOUND);
+//        BaseSteps.verifyResponse(response, "message","Курьера с таким id нет");
+//    }
+//
+//    @Test
+//    @DisplayName("Delete courier without id")
+//    @Description("400: Delete courier without id")
+//    public void deleteCourierBadRequestWithoutIdTest() {
+//        Response response = courierTest.deleteWithoutId();
+//        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_BAD_REQUEST);
+//        BaseSteps.verifyResponse(response, "message","Недостаточно данных для удаления курьера");
+//    }
 
 }

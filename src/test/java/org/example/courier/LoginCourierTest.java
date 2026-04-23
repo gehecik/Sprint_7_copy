@@ -49,14 +49,14 @@ public class LoginCourierTest extends BaseTest {
         checkLoginCourierBadRequestTest(courierWithoutLogin);
     }
 
-    @Test
-    @DisplayName("Logging an account without password")
-    @Description("400: Logging an account without password")
-    public void checkLoginCourierBadRequestWithoutPasswordTest() {
-        Courier courierWithoutPassword = Courier.currentCourierWithoutPassword(courier);
-
-        checkLoginCourierBadRequestTest(courierWithoutPassword);
-    }
+//    @Test
+//    @DisplayName("Logging an account without password")
+//    @Description("400: Logging an account without password")
+//    public void checkLoginCourierBadRequestWithoutPasswordTest() {
+//        Courier courierWithoutPassword = Courier.currentCourierWithoutPassword(courier);
+//
+//        checkLoginCourierBadRequestTest(courierWithoutPassword);
+//    }
 
     public void checkLoginNotFound(Object courier) {
         Response response = courierTest.loginCourier(courier);

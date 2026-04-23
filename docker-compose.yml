@@ -1,0 +1,15 @@
+#3fc8c6f80b104a9d86d24955da2fd4eb
+#  CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+#  2114b9fe3cd3   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   4 minutes ago   Up 4 minutes   0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp   jenkins
+services: # описание сервисов, которые развернутся при запуске файла
+  jenkins: # развернётся Jenkins
+    image: jenkins/jenkins:lts # образ, который скачается для установки Jenkins
+    privileged: true
+    user: root
+    ports: # порты, которые использует сервис
+      - 8081:8080 # В контейнере Jenkins развернётся на порте 8080,
+                  # но на локальной машине этот порт часто занят, 
+                  # поэтому порт 8080 контейнера связывается
+                  # с портом 8081 на локальной машине. 
+                  # Получится адрес localhost:8081
+    container_name: jenkins # имя контейнера: оно может быть любым 

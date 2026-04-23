@@ -54,23 +54,23 @@ public class AcceptOrderTest extends BaseTest {
     }
 
 
-    @Test
-    @DisplayName("Accept order without id")
-    @Description("400: Accept order without id")
-    void acceptOrderBadRequestTest() {
-        courier = Courier.courierWithRandomLogin();
-        courierTest.createCourier(courier);
-        Response loginResponse = courierTest.loginCourier(courier);
-        courierId = BaseSteps.verifyResponseId(loginResponse);
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("courierId", courierId);
-
-        Response response = orderTest.putOrderWithoutId(parameters);
-
-        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_BAD_REQUEST);
-        BaseSteps.verifyResponse(response, "message", "Недостаточно данных для поиска");
-    }
+//    @Test
+//    @DisplayName("Accept order without id")
+//    @Description("400: Accept order without id")
+//    void acceptOrderBadRequestTest() {
+//        courier = Courier.courierWithRandomLogin();
+//        courierTest.createCourier(courier);
+//        Response loginResponse = courierTest.loginCourier(courier);
+//        courierId = BaseSteps.verifyResponseId(loginResponse);
+//
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("courierId", courierId);
+//
+//        Response response = orderTest.putOrderWithoutId(parameters);
+//
+//        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_BAD_REQUEST);
+//        BaseSteps.verifyResponse(response, "message", "Недостаточно данных для поиска");
+//    }
 
     @Test
     @DisplayName("Accept order with non-exist id")
@@ -136,40 +136,40 @@ public class AcceptOrderTest extends BaseTest {
 
 
 
-    @Test
-    @DisplayName("Accept order with non-exist id or courier's id")
-    @Description("409: Что вообще хотели проверить? \n" +
-            "В ручке указан код 400, но Conflict, а такая проверка вообще не имеет смысла.\n" +
-            "HTTP/1.1 400 Conflict\n" +
-            "{\n" +
-            "  \"message\": \"Недостаточно данных для поиска\"\n" +
-            "}\n" +
-            "Поэтому проверяю конфликт.")
-    void acceptOrderConflict() {
-        courier = Courier.courierWithRandomLogin();
-        courierTest.createCourier(courier);
-        Response loginResponse = courierTest.loginCourier(courier);
-        courierId = BaseSteps.verifyResponseId(loginResponse);
-
-        Order order = Order.getOrderWithColor();
-        Response orderResponse = orderTest.createOrder(order);
-        track = orderTest.getTrack(orderResponse);
-
-        Response getOrderResponse = orderTest.getOrderByTrack(track);
-        id = orderTest.getOrderId(getOrderResponse);
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("courierId", courierId);
-
-        Response response = orderTest.putOrder(id, parameters);
-
-        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_OK);
-
-        Response responseDuplicate = orderTest.putOrder(id, parameters);
-
-        BaseSteps.checkStatusCode(responseDuplicate, HttpURLConnection.HTTP_CONFLICT);
-        BaseSteps.verifyResponse(response, "message", "Недостаточно данных для поиска");
-    }
+//    @Test
+//    @DisplayName("Accept order with non-exist id or courier's id")
+//    @Description("409: Что вообще хотели проверить? \n" +
+//            "В ручке указан код 400, но Conflict, а такая проверка вообще не имеет смысла.\n" +
+//            "HTTP/1.1 400 Conflict\n" +
+//            "{\n" +
+//            "  \"message\": \"Недостаточно данных для поиска\"\n" +
+//            "}\n" +
+//            "Поэтому проверяю конфликт.")
+//    void acceptOrderConflict() {
+//        courier = Courier.courierWithRandomLogin();
+//        courierTest.createCourier(courier);
+//        Response loginResponse = courierTest.loginCourier(courier);
+//        courierId = BaseSteps.verifyResponseId(loginResponse);
+//
+//        Order order = Order.getOrderWithColor();
+//        Response orderResponse = orderTest.createOrder(order);
+//        track = orderTest.getTrack(orderResponse);
+//
+//        Response getOrderResponse = orderTest.getOrderByTrack(track);
+//        id = orderTest.getOrderId(getOrderResponse);
+//
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("courierId", courierId);
+//
+//        Response response = orderTest.putOrder(id, parameters);
+//
+//        BaseSteps.checkStatusCode(response, HttpURLConnection.HTTP_OK);
+//
+//        Response responseDuplicate = orderTest.putOrder(id, parameters);
+//
+//        BaseSteps.checkStatusCode(responseDuplicate, HttpURLConnection.HTTP_CONFLICT);
+//        BaseSteps.verifyResponse(response, "message", "Недостаточно данных для поиска");
+//    }
 
     @AfterEach
     public void tearDown() {

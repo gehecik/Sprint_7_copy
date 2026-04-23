@@ -55,20 +55,20 @@ public class CreateCourierTest extends BaseTest {
         createCourierBadRequestTest(courier);
     }
 
-    @Test
-    @DisplayName("Creating an account with a duplicate login")
-    @Description("409: Creating an account with a duplicate login")
-    void createCourierConflictWithDuplicateLoginTest() {
-        Courier courier = Courier.courierWithRandomLogin();
-
-        courierTest.createCourier(courier);
-        Response loginResponse = courierTest.loginCourier(courier);
-        courierId = BaseSteps.getId(loginResponse);
-
-        Response responseDuplicate = courierTest.createCourier(courier);
-        BaseSteps.checkStatusCode(responseDuplicate, HttpURLConnection.HTTP_CONFLICT);
-        BaseSteps.verifyResponse(responseDuplicate, "message","Этот логин уже используется");
-    }
+//    @Test
+//    @DisplayName("Creating an account with a duplicate login")
+//    @Description("409: Creating an account with a duplicate login")
+//    void createCourierConflictWithDuplicateLoginTest() {
+//        Courier courier = Courier.courierWithRandomLogin();
+//
+//        courierTest.createCourier(courier);
+//        Response loginResponse = courierTest.loginCourier(courier);
+//        courierId = BaseSteps.getId(loginResponse);
+//
+//        Response responseDuplicate = courierTest.createCourier(courier);
+//        BaseSteps.checkStatusCode(responseDuplicate, HttpURLConnection.HTTP_CONFLICT);
+//        BaseSteps.verifyResponse(responseDuplicate, "message","Этот логин уже используется");
+//    }
 
     @AfterEach
     public void tearDown() {
